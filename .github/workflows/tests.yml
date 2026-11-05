@@ -1,0 +1,29 @@
+name: Erlang tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  eunit:
+    name: EUnit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Erlang/OTP
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: '27'
+
+      - name: Compile modules
+        run: erlc crud_store.erl crud_store_tests.erl
+
+      - name: Run EUnit tests
+        run: erl -noshell -eval "case eunit:test(crud_store_tests, [verbose]) of ok -> halt(0); _ -> halt(1) end."
