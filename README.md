@@ -20,6 +20,12 @@ erlc crud_store.erl crud_store_tests.erl
 erl -noshell -eval "case eunit:test(crud_store_tests, [verbose]) of ok -> halt(0); _ -> halt(1) end."
 ```
 
-Expected output:
+Expected output when all tests pass:
 
 ![EUnit test output showing all 5 tests passing](docs/eunit-output.png)
+
+Example output when a test fails (a deliberately failing test added temporarily; it is not part of this repository):
+
+![EUnit test output showing 1 failed and 5 passed tests](docs/eunit-failure-output.png)
+
+The colors in these images were added for readability; EUnit itself prints plain text.
