@@ -18,3 +18,8 @@ From the directory containing both files:
 ```sh
 erlc crud_store.erl crud_store_tests.erl
 erl -noshell -eval "case eunit:test(crud_store_tests, [verbose]) of ok -> halt(0); _ -> halt(1) end."
+```
+
+Expected output:
+
+![EUnit test output showing all 5 tests passing](docs/eunit-output.png)
